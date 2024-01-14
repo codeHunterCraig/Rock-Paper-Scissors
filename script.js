@@ -28,9 +28,7 @@
         let computerInput = computerSelection;
         let userScore = 0;
         let computerScore = 0;
-        (playerSelection.toUpperCase())
-        ? userInput = playerSelection.toLowerCase()
-        : userInput = playerSelection;
+        userInput = playerSelection;
         if (userInput == computerInput) {
             return {
                 roundResult: "It's a TIE! Play another round",
@@ -102,9 +100,15 @@
         
         console.log(`Round: ${tries}`);
         userMove = prompt("Enter your move: ");
-        if (userMove != "rock" && userMove != "paper" && userMove != "scissors") {
-            alert("You don't know how to play rock paper scissors do you? lol.")    
+        if (userMove === null) {
+            alert("Come back and try your luck next time.")
         }
+        userMove = userMove.toLowerCase();
+        if (userMove != "rock" && userMove != "paper" && userMove != "scissors" || userMove === undefined) {
+            alert("You don't know how to play rock paper scissors do you? lol.") 
+            tries--   
+        }
+         
          const roundResults = playRound(userMove, computerMove);
          let roundOutcome = roundResults.roundResult;
          if(roundOutcome === "It's a TIE! Play another round") {
